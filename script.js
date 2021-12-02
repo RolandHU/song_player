@@ -4,6 +4,7 @@ audio.volume = 0.5
 function start() {
     audio.play()
 }
+#a
 
 audio.addEventListener("timeupdate", (e) => {
     console.log(e.target.currentTime)
