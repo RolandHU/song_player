@@ -10,30 +10,28 @@ function start() {
 
 audio.addEventListener("timeupdate", (e) => {
     const second = String(e.target.currentTime).split(".")[0]
-    console.log(returnLyrics(second))
+    getSongs(second)
 })
 
-function returnLyrics(second) {
-    fetch("https://rolandhu.github.io/song_player/playlist/songList.json")
-    .then (response => response.json())
-    .then ((data) => {
-        fetch(data[0].lyricsSrc)
-            .then (response => response.json())
-            .then ((data) => {
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].second == second) {
-                        return data[i]
-                    }
-                }
-            })
-    })
+async function getData(url) {
+    const response = await fetch(url)
+    const songs = await response.json()
+    return songs
 }
 
-fetch("https://rolandhu.github.io/song_player/playlist/songList.json")
-    .then (response => response.json())
-    .then ((data) => {
-        audio.setAttribute("src", data[0].songSrc)
-        fetch(data[0].lyricsSrc)
-            .then (response => response.json())
-            .then (data => console.log(data))
-    })
+async function getSongs(sec) {
+    const songs = await getData("https://rolandhu.github.io/song_player/playlist/songList.json")
+    const lyrics = await getData(songs[0].lyricsSrc)
+    for (let i = 0; i < lyrics.length; i++) {
+        if (sec == lyrics[i].second) {
+            document.getElementById("lyrics").innerText = lyrics[i].text
+        }
+    }
+}
+
+async function getAudio() {
+    const songs = await getData("https://rolandhu.github.io/song_player/playlist/songList.json")
+    audio.setAttribute("src", songs[0].songSrc)
+}
+
+getAudio()
