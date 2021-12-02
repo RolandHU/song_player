@@ -13,6 +13,6 @@ body {
 #lyrics {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    font-size: min(100px, 15vw);
+    font-size: min(80px, 15vw);
     color: white;
 }
