@@ -7,4 +7,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgb(26, 26, 26);
+}
+
+#lyrics {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: min(100px, 15vw);
+    color: white;
 }
