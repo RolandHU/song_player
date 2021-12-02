@@ -10,8 +10,24 @@ function start() {
 
 audio.addEventListener("timeupdate", (e) => {
     const second = String(e.target.currentTime).split(".")[0]
-    console.log(second)
+    console.log(returnLyrics(second))
 })
+
+function returnLyrics(second) {
+    fetch("https://rolandhu.github.io/song_player/playlist/songList.json")
+    .then (response => response.json())
+    .then ((data) => {
+        fetch(data[0].lyricsSrc)
+            .then (response => response.json())
+            .then ((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].second == second) {
+                        return data[i]
+                    }
+                }
+            })
+    })
+}
 
 fetch("https://rolandhu.github.io/song_player/playlist/songList.json")
     .then (response => response.json())
