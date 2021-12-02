@@ -15,4 +15,9 @@ audio.addEventListener("timeupdate", (e) => {
 
 fetch("https://rolandhu.github.io/song_player/playlist/songList.json")
     .then (response => response.json())
-    .then (data => audio.setAttribute("src", data[0].songSrc))
+    .then ((data) => {
+        audio.setAttribute("src", data[0].songSrc)
+        fetch(data[0].lyricsSrc)
+            .then (response => response.json())
+            .then (data => console.log(data))
+    })
