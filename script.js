@@ -3,7 +3,7 @@ audio.volume = 0.5
 
 function start() {
     document.getElementById("btn").style.display = "none"
-    setTimeout({
+    setTimeout(() => {
         audio.play()
     }, 2000)
 }
