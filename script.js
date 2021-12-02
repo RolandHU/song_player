@@ -9,5 +9,6 @@ audio.addEventListener("timeupdate", (e) => {
     console.log(e.target.currentTime)
 })
 
-const songList = fetch("https://rolandhu.github.io/song_player/playlist/songList.json").then (response => response.json()).then (data => data)
-console.log(songList)
+fetch("https://rolandhu.github.io/song_player/playlist/songList.json")
+    .then (response => response.json())
+    .then (data => audio.setAttributes("src", data[0].songSrc))
