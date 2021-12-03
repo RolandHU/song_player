@@ -1,10 +1,13 @@
 const audio = document.getElementById("audio")
 audio.volume = 0.5
+const display = document.querySelector(".display")
+loadLyrics()
 
 function start() {
     document.getElementById("btn").style.display = "none"
     setTimeout(() => {
         audio.play()
+        display.style.display = "block"
     }, 2000)
 }
 
@@ -19,12 +22,24 @@ async function getData(url) {
     return songs
 }
 
-async function getSongs(sec) {
+async function loadLyrics() {
     const songs = await getData("https://rolandhu.github.io/song_player/playlist/songList.json")
     const lyrics = await getData(songs[0].lyricsSrc)
     for (let i = 0; i < lyrics.length; i++) {
+        document.getElementById("lyrics").innerHTML += `<p class="line"> ${lyrics[i].text} </p>`
+    }
+}
+
+async function getSongs(sec) {
+    const songs = await getData("https://rolandhu.github.io/song_player/playlist/songList.json")
+    const lyrics = await getData(songs[0].lyricsSrc)
+    const lines = document.querySelectorAll(".line")
+    
+    pos = 0
+    for (let i = 0; i < lyrics.length; i++) {
         if (sec == lyrics[i].second) {
-            document.getElementById("lyrics").innerText = lyrics[i].text
+            document.getElementById("lyrics").style.top = `${Math.ceil(Number(window.getComputedStyle(document.getElementById("lyrics")).top.replace("px", ""))) - lines[pos].offsetHeight}px`
+            pos += 1
         }
     }
 }
