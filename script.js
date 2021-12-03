@@ -30,15 +30,15 @@ async function loadLyrics() {
     }
 }
 
+var lastSec = 0
 async function getSongs(sec) {
     const songs = await getData("https://rolandhu.github.io/song_player/playlist/songList.json")
     const lyrics = await getData(songs[0].lyricsSrc)
     const lines = document.querySelectorAll(".line")
     
-    pos = 0
-    lastSec = -1
+    var pos = 0
     for (let i = 0; i < lyrics.length; i++) {
-        if (sec == lyrics[i].second && lastSec != sec) {
+        if (sec == lyrics[i].second && sec != lastSec) {
             document.getElementById("lyrics").style.top = `${Math.ceil(Number(window.getComputedStyle(document.getElementById("lyrics")).top.replace("px", ""))) - lines[pos].offsetHeight}px`
             lastSec = sec
             pos += 1
