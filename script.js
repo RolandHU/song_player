@@ -36,9 +36,11 @@ async function getSongs(sec) {
     const lines = document.querySelectorAll(".line")
     
     pos = 0
+    lastSec = -1
     for (let i = 0; i < lyrics.length; i++) {
-        if (sec == lyrics[i].second) {
+        if (sec == lyrics[i].second && lasSec != sec) {
             document.getElementById("lyrics").style.top = `${Math.ceil(Number(window.getComputedStyle(document.getElementById("lyrics")).top.replace("px", ""))) - lines[pos].offsetHeight}px`
+            lastSec = sec
             pos += 1
         }
     }
