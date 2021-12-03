@@ -10,9 +10,26 @@ body {
     background: rgb(26, 26, 26);
 }
 
+.display {
+    width: 100%;
+    height: min(339px, 110vw);
+    display: none;
+    overflow: hidden;
+}
+
 #lyrics {
+    position: relative;
+    top: 25vh;
+    transition: all 0.3s;
+}
+
+#lyrics > p {
+    padding-block: 20px;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
-    font-size: min(80px, 15vw);
-    color: white;
+    font-size: min(60px, 10vw);
+    color: rgba(255, 255, 255, 0.3);
 }
