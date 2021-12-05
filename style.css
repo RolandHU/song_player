@@ -32,4 +32,5 @@ body {
     font-weight: 700;
     font-size: min(60px, 10vw);
     color: rgba(255, 255, 255, 0.3);
+    transition: font-size 0.3s, color 0.3s;
 }
