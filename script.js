@@ -40,6 +40,15 @@ async function getSongs(sec) {
     for (let i = 0; i < lyrics.length; i++) {
         if (sec == lyrics[i].second && sec != lastSec) {
             document.getElementById("lyrics").style.top = `${Math.ceil(Number(window.getComputedStyle(document.getElementById("lyrics")).top.replace("px", ""))) - lines[pos].offsetHeight}px`
+            lines.forEach((elem, index) => {
+                if (index == i) {
+                    elem.style.fontSize = "min(70px, 15vw)"
+                    elem.style.color = "white"
+                } else {
+                    elem.style.fontSize = "min(60px, 10vw)"
+                    elem.style.color = "rgba(255, 255, 255, 0.3)"
+                }
+            })
             lastSec = sec
             pos += 1
         }
