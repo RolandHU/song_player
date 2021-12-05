@@ -3,6 +3,14 @@ audio.volume = 0.5
 const display = document.querySelector(".display")
 loadLyrics()
 
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState == "hidden") {
+        audio.pause()
+    } else if (document.visibilityState == "visible") {
+        audio.play()
+    }
+})
+
 function start() {
     document.getElementById("btn").style.display = "none"
     setTimeout(() => {
