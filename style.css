@@ -1,20 +1,40 @@
 body {
     margin: 0;
+    transition: filter 0.2s;
 }
 
 .container {
+    position: relative;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(26, 26, 26);
+    background: linear-gradient(rgba(26, 26, 26, 0.3), rgba(26, 26, 26, 0.3)), linear-gradient(to top, rgba(110, 14, 110, 0.7), rgba(255, 167, 167, 0.6));
 }
-
 .display {
     width: 100%;
     height: min(339px, 110vw);
     display: none;
     overflow: hidden;
+}
+
+#btn {
+    z-index: 1;
+    width: min(200px, 95vw);
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background: rgb(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#btn:hover {
+    transform: scale(1.1);
 }
 
 #lyrics {
@@ -33,4 +53,13 @@ body {
     font-size: min(60px, 10vw);
     color: rgba(255, 255, 255, 0.3);
     transition: font-size 0.3s, color 0.3s;
+}
+
+.bg {
+    z-index: -2;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: url("background.jpg");
+    filter: blur(2px);
 }
